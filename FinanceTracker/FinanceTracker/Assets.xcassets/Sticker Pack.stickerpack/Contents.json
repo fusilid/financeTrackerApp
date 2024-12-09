@@ -1,0 +1,20 @@
+{
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "grid-size" : "small"
+  },
+  "stickers" : [
+    {
+      "filename" : "transportation.sticker"
+    },
+    {
+      "filename" : "utilities.sticker"
+    },
+    {
+      "filename" : "food.sticker"
+    }
+  ]
+}

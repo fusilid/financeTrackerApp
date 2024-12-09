@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JOZ-TO-8He">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Transaction View Controller-->
+        <scene sceneID="Z4O-IZ-mRT">
+            <objects>
+                <tableViewController id="JOZ-TO-8He" customClass="TransactionViewController" customModule="FinanceTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="m9q-Wq-F4l">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="yi0-tk-ftB">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="58"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="New Transaction"/>
+                            <connections>
+                                <action selector="addNewTransaction:" destination="JOZ-TO-8He" eventType="touchUpInside" id="6nF-en-C3d"/>
+                            </connections>
+                        </button>
+                        <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on Transaction to Edit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MAi-oC-LtI">
+                            <rect key="frame" x="0.0" y="364" width="393" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" rowHeight="228" id="j1h-H6-pjV" userLabel="UITableViewCell">
+                                <rect key="frame" x="0.0" y="108" width="393" height="228"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j1h-H6-pjV" id="8eN-O2-tAJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="228"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-Ds-iu8">
+                                            <rect key="frame" x="45" y="-10" width="300" height="200"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </stackView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JOZ-TO-8He" id="HTz-0y-sFw"/>
+                            <outlet property="delegate" destination="JOZ-TO-8He" id="JR3-yg-fv8"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="6Ss-tG-fR0" kind="presentation" identifier="showCategorySelection" id="3QK-oG-kjq"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5TU-yy-SpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="109.16030534351144" y="-26.056338028169016"/>
+        </scene>
+        <!--Category Selection View Controller-->
+        <scene sceneID="mZh-qU-4Wd">
+            <objects>
+                <viewController id="6Ss-tG-fR0" customClass="CategorySelectionViewController" customModule="FinanceTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xqz-X4-87E">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="339" translatesAutoresizingMaskIntoConstraints="NO" id="c0Q-Uf-3rN" userLabel="CategoryCell">
+                                <rect key="frame" x="0.0" y="214" width="393" height="339"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c0Q-Uf-3rN" id="bTc-3E-SCg">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="339"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="A13-gY-mPN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <segue destination="d5q-Fp-rtT" kind="presentation" identifier="showTransactionDetails" id="Hrv-Wa-dsR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uHe-8M-CaM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="919.84732824427476" y="-18.30985915492958"/>
+        </scene>
+        <!--Transaction Details View Controller-->
+        <scene sceneID="TQM-cq-BI3">
+            <objects>
+                <viewController id="d5q-Fp-rtT" customClass="TransactionDetailsViewController" customModule="FinanceTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8ft-aS-o2c">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Cost" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WHX-OW-Gyk" customClass="amountTextField">
+                                <rect key="frame" x="96.666666666666686" y="171" width="200" height="38.333333333333343"/>
+                                <accessibility key="accessibilityConfiguration" identifier="amountTextField"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="M49-jd-11w"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wiq-nS-NKJ" customClass="dateTextField">
+                                <rect key="frame" x="96.666666666666686" y="458" width="200" height="72.333333333333371"/>
+                                <accessibility key="accessibilityConfiguration" identifier="dateTextField"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="eca-4l-Cb7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3a0-Px-CrY" customClass="saveTransaction">
+                                <rect key="frame" x="119.99999999999999" y="623" width="159.66666666666663" height="35"/>
+                                <accessibility key="accessibilityConfiguration" identifier="saveTransaction"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="yhn-4i-yhD"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save Transaction"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kmn-tI-2Ig"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3a0-Px-CrY" firstAttribute="top" secondItem="Wiq-nS-NKJ" secondAttribute="bottom" constant="92.666666666666686" id="7Lk-JM-4gq"/>
+                            <constraint firstItem="Wiq-nS-NKJ" firstAttribute="top" secondItem="WHX-OW-Gyk" secondAttribute="bottom" constant="248.66666666666666" id="D0a-ST-qDn"/>
+                            <constraint firstItem="Wiq-nS-NKJ" firstAttribute="centerX" secondItem="8ft-aS-o2c" secondAttribute="centerX" id="DgK-Sn-Txq"/>
+                            <constraint firstItem="WHX-OW-Gyk" firstAttribute="centerX" secondItem="8ft-aS-o2c" secondAttribute="centerX" id="F2J-bh-u7e"/>
+                            <constraint firstItem="kmn-tI-2Ig" firstAttribute="bottom" secondItem="3a0-Px-CrY" secondAttribute="bottom" constant="125" id="a0W-Ub-mx6"/>
+                            <constraint firstItem="3a0-Px-CrY" firstAttribute="centerX" secondItem="Wiq-nS-NKJ" secondAttribute="centerX" constant="3.3333333333333144" id="cKb-aa-Gag"/>
+                            <constraint firstItem="Wiq-nS-NKJ" firstAttribute="top" secondItem="WHX-OW-Gyk" secondAttribute="bottom" constant="248.66666666666666" id="j0T-vo-9mO"/>
+                            <constraint firstItem="3a0-Px-CrY" firstAttribute="leading" secondItem="kmn-tI-2Ig" secondAttribute="leading" constant="120" id="ktF-5B-6mC"/>
+                            <constraint firstItem="WHX-OW-Gyk" firstAttribute="top" secondItem="kmn-tI-2Ig" secondAttribute="top" constant="112" id="uhR-pa-Mnn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="VGz-zQ-sN1"/>
+                    <connections>
+                        <outlet property="amountTextField" destination="WHX-OW-Gyk" id="t0w-bB-zXi"/>
+                        <outlet property="dateTextField" destination="Wiq-nS-NKJ" id="OgG-YH-BbT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WKg-1c-Myo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1743" y="-18"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
