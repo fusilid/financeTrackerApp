@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F809130C2CEA7C6F00D9A737 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F809130B2CEA7C6F00D9A737 /* Transaction.swift */; };
-		F851DDAC2D062B000098CF19 /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F851DDAB2D062B000098CF19 /* CategorySelectionViewController.swift */; };
-		F851DDAE2D06372B0098CF19 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F851DDAD2D06372B0098CF19 /* TransactionDetailsViewController.swift */; };
 		F8766AD82CCBE9FB006F021D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8766AD72CCBE9FB006F021D /* AppDelegate.swift */; };
 		F8766ADA2CCBE9FB006F021D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8766AD92CCBE9FB006F021D /* SceneDelegate.swift */; };
 		F8766ADF2CCBE9FB006F021D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8766ADD2CCBE9FB006F021D /* Main.storyboard */; };
@@ -41,8 +39,6 @@
 
 /* Begin PBXFileReference section */
 		F809130B2CEA7C6F00D9A737 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		F851DDAB2D062B000098CF19 /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
-		F851DDAD2D06372B0098CF19 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
 		F8766AD42CCBE9FB006F021D /* FinanceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinanceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8766AD72CCBE9FB006F021D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8766AD92CCBE9FB006F021D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,8 +107,6 @@
 				F8766AD92CCBE9FB006F021D /* SceneDelegate.swift */,
 				F8766ADD2CCBE9FB006F021D /* Main.storyboard */,
 				F8766B072CCBEAF3006F021D /* TransactionViewController.swift */,
-				F851DDAB2D062B000098CF19 /* CategorySelectionViewController.swift */,
-				F851DDAD2D06372B0098CF19 /* TransactionDetailsViewController.swift */,
 				F8766AE02CCBE9FF006F021D /* Assets.xcassets */,
 				F8766AE22CCBE9FF006F021D /* LaunchScreen.storyboard */,
 				F8766AE52CCBE9FF006F021D /* Info.plist */,
@@ -271,12 +265,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8766AD82CCBE9FB006F021D /* AppDelegate.swift in Sources */,
-				F851DDAC2D062B000098CF19 /* CategorySelectionViewController.swift in Sources */,
 				F8766B082CCBEAF3006F021D /* TransactionViewController.swift in Sources */,
 				F809130C2CEA7C6F00D9A737 /* Transaction.swift in Sources */,
 				F8766B0C2CCBEBB4006F021D /* TransactionStore.swift in Sources */,
 				F8766ADA2CCBE9FB006F021D /* SceneDelegate.swift in Sources */,
-				F851DDAE2D06372B0098CF19 /* TransactionDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

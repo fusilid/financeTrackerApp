@@ -5,22 +5,16 @@
 //  Created by D James Fusilier on 11/28/24.
 //
 
-import UIKit
+import Foundation
 
-enum Category: String, Codable {
-    case food = "Food"
-    case utilities = "Utilities"
-    case transportation = "Transportation"
-}
-
-class Transaction: Codable {
+struct Transaction: Codable {
     var date: Date
     var cost: Double
     var category: Category
-    
-    init(date: Date, cost: Double, category: Category) {
-        self.date = date
-        self.cost = cost
-        self.category = category
-    }
+}
+
+enum Category: String, Codable, CaseIterable {
+    case food
+    case utilities
+    case transportation
 }

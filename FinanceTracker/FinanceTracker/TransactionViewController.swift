@@ -4,82 +4,86 @@
 //
 //  Created by D James Fusilier on 11/28/24.
 //
-
 import UIKit
 
-class TransactionViewController: UITableViewController {
+class TransactionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var tableView: UITableView!
     
-    var transactionStore = TransactionStore()
+    var transactions: [Transaction] = []
+    var transactionStore: TransactionStore? // Add this property
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        transactionStore.loadTransactions()
+        tableView.dataSource = self
+        tableView.delegate = self
+        loadTransactions()
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Category.allCases.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let category = Category(rawValue: sectionTitle(for: section))!
-        return transactionStore.transactions(for: category).count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let category = Category.allCases[section]
+        return transactions.filter { $0.category == category }.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        
-        let category = Category(rawValue: sectionTitle(for: indexPath.section))!
-        let transaction = transactionStore.transactions(for: category)[indexPath.row]
-        
-        cell.textLabel?.text = "\(transaction.date): \(transaction.cost)"
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath)
+        let category = Category.allCases[indexPath.section]
+        let transaction = transactions.filter { $0.category == category }[indexPath.row]
+        cell.textLabel?.text = "\(transaction.cost) - \(transaction.date)"
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitle(for: section)
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return Category.allCases[section].rawValue.capitalized
     }
     
-    private func sectionTitle(for section: Int) -> String {
-        switch section {
-        case 0: return Category.food.rawValue
-        case 1: return Category.utilities.rawValue
-        case 2: return Category.transportation.rawValue
-        default: return ""
+    @IBAction func addTransaction(_ sender: UIButton) {
+        let category: Category
+        switch sender.tag {
+        case 0:
+            category = .food
+        case 1:
+            category = .utilities
+        case 2:
+            category = .transportation
+        default:
+            return
+        }
+        presentTransactionEntry(for: category)
+    }
+    
+    func presentTransactionEntry(for category: Category) {
+        // Present modals or popovers for amount and date entry
+        // Save the transaction once both fields are entered
+    }
+    
+    func saveTransactions() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(transactions) {
+            UserDefaults.standard.set(encoded, forKey: "transactions")
         }
     }
     
-    @IBAction func addNewTransaction(_ sender: UIButton) {
-        let categorySelectionVC = CategorySelectionViewController()
-        categorySelectionVC.transactionStore = transactionStore // Pass the transactionStore
-        categorySelectionVC.didSelectCategory = { [weak self] selectedCategory in
-            self?.presentTransactionDetails(for: selectedCategory)
-        }
-        let navController = UINavigationController(rootViewController: categorySelectionVC)
-        present(navController, animated: true, completion: nil)
-    }
-    
-    private func presentTransactionDetails(for category: Category) {
-        let alertController = UIAlertController(title: "New Transaction", message: "Enter transaction details", preferredStyle: .alert)
-        
-        alertController.addTextField { textField in
-            textField.placeholder = "Cost"
-            textField.keyboardType = .decimalPad
-        }
-        
-        let addAction = UIAlertAction(title: "Add", style: .default) { [weak self] _ in
-            if let costText = alertController.textFields?.first?.text, let cost = Double(costText) {
-                let date = Date()
-                _ = self?.transactionStore.createTransaction(date: date, cost: cost, category: category)
-                self?.tableView.reloadData()
+    func loadTransactions() {
+        if let savedTransactions = UserDefaults.standard.object(forKey: "transactions") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedTransactions = try? decoder.decode([Transaction].self, from: savedTransactions) {
+                transactions = loadedTransactions
             }
         }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addAction(addAction)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = Category.allCases[indexPath.section]
+        let transaction = transactions.filter { $0.category == category }[indexPath.row]
+        // Present modals or popovers to edit the transaction
+    }
+    
+    func displayTotal() {
+        let total = transactions.reduce(0) { $0 + $1.cost }
+        // Update UI with the total
     }
 }
