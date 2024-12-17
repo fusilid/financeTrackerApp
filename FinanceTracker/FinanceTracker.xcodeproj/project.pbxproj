@@ -7,19 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F80164B62D0FD4CE00C8D74D /* AmountEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80164B52D0FD4CE00C8D74D /* AmountEntryViewController.swift */; };
+		F80164B82D0FD4ED00C8D74D /* DateEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80164B72D0FD4ED00C8D74D /* DateEntryViewController.swift */; };
 		F809130C2CEA7C6F00D9A737 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F809130B2CEA7C6F00D9A737 /* Transaction.swift */; };
-		F851DDAC2D062B000098CF19 /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F851DDAB2D062B000098CF19 /* CategorySelectionViewController.swift */; };
-		F851DDAE2D06372B0098CF19 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F851DDAD2D06372B0098CF19 /* TransactionDetailsViewController.swift */; };
+		F8176FB02D11F8C90041BB4F /* utilitiesIcon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F8176FAF2D11F8C80041BB4F /* utilitiesIcon.jpeg */; };
+		F8176FB22D11F8E60041BB4F /* transportationIcon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F8176FB12D11F8E60041BB4F /* transportationIcon.jpeg */; };
+		F8176FB42D11F91A0041BB4F /* foodIcon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F8176FB32D11F91A0041BB4F /* foodIcon.jpeg */; };
 		F8766AD82CCBE9FB006F021D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8766AD72CCBE9FB006F021D /* AppDelegate.swift */; };
 		F8766ADA2CCBE9FB006F021D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8766AD92CCBE9FB006F021D /* SceneDelegate.swift */; };
 		F8766ADF2CCBE9FB006F021D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8766ADD2CCBE9FB006F021D /* Main.storyboard */; };
-		F8766AE12CCBE9FF006F021D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8766AE02CCBE9FF006F021D /* Assets.xcassets */; };
 		F8766AE42CCBE9FF006F021D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8766AE22CCBE9FF006F021D /* LaunchScreen.storyboard */; };
 		F8766AEF2CCBE9FF006F021D /* FinanceTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8766AEE2CCBE9FF006F021D /* FinanceTrackerTests.swift */; };
 		F8766AF92CCBE9FF006F021D /* FinanceTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8766AF82CCBE9FF006F021D /* FinanceTrackerUITests.swift */; };
 		F8766AFB2CCBE9FF006F021D /* FinanceTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8766AFA2CCBE9FF006F021D /* FinanceTrackerUITestsLaunchTests.swift */; };
 		F8766B082CCBEAF3006F021D /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8766B072CCBEAF3006F021D /* TransactionViewController.swift */; };
 		F8766B0C2CCBEBB4006F021D /* TransactionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8766B0B2CCBEBB4006F021D /* TransactionStore.swift */; };
+		F8FA507F2D1137BD00429162 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8FA507E2D1137BD00429162 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,14 +43,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F80164B52D0FD4CE00C8D74D /* AmountEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountEntryViewController.swift; sourceTree = "<group>"; };
+		F80164B72D0FD4ED00C8D74D /* DateEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateEntryViewController.swift; sourceTree = "<group>"; };
 		F809130B2CEA7C6F00D9A737 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
-		F851DDAB2D062B000098CF19 /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
-		F851DDAD2D06372B0098CF19 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
+		F8176FAF2D11F8C80041BB4F /* utilitiesIcon.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = utilitiesIcon.jpeg; sourceTree = "<group>"; };
+		F8176FB12D11F8E60041BB4F /* transportationIcon.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = transportationIcon.jpeg; sourceTree = "<group>"; };
+		F8176FB32D11F91A0041BB4F /* foodIcon.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = foodIcon.jpeg; sourceTree = "<group>"; };
 		F8766AD42CCBE9FB006F021D /* FinanceTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinanceTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8766AD72CCBE9FB006F021D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8766AD92CCBE9FB006F021D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F8766ADE2CCBE9FB006F021D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F8766AE02CCBE9FF006F021D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8766AE32CCBE9FF006F021D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8766AE52CCBE9FF006F021D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8766AEA2CCBE9FF006F021D /* FinanceTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinanceTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +62,7 @@
 		F8766AFA2CCBE9FF006F021D /* FinanceTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F8766B072CCBEAF3006F021D /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		F8766B0B2CCBEBB4006F021D /* TransactionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStore.swift; sourceTree = "<group>"; };
+		F8FA507E2D1137BD00429162 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,13 +117,16 @@
 				F8766AD92CCBE9FB006F021D /* SceneDelegate.swift */,
 				F8766ADD2CCBE9FB006F021D /* Main.storyboard */,
 				F8766B072CCBEAF3006F021D /* TransactionViewController.swift */,
-				F851DDAB2D062B000098CF19 /* CategorySelectionViewController.swift */,
-				F851DDAD2D06372B0098CF19 /* TransactionDetailsViewController.swift */,
-				F8766AE02CCBE9FF006F021D /* Assets.xcassets */,
+				F80164B52D0FD4CE00C8D74D /* AmountEntryViewController.swift */,
+				F80164B72D0FD4ED00C8D74D /* DateEntryViewController.swift */,
 				F8766AE22CCBE9FF006F021D /* LaunchScreen.storyboard */,
+				F8FA507E2D1137BD00429162 /* Assets.xcassets */,
 				F8766AE52CCBE9FF006F021D /* Info.plist */,
 				F8766B0B2CCBEBB4006F021D /* TransactionStore.swift */,
 				F809130B2CEA7C6F00D9A737 /* Transaction.swift */,
+				F8176FB32D11F91A0041BB4F /* foodIcon.jpeg */,
+				F8176FB12D11F8E60041BB4F /* transportationIcon.jpeg */,
+				F8176FAF2D11F8C80041BB4F /* utilitiesIcon.jpeg */,
 			);
 			path = FinanceTracker;
 			sourceTree = "<group>";
@@ -243,9 +252,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8176FB42D11F91A0041BB4F /* foodIcon.jpeg in Resources */,
+				F8176FB22D11F8E60041BB4F /* transportationIcon.jpeg in Resources */,
+				F8176FB02D11F8C90041BB4F /* utilitiesIcon.jpeg in Resources */,
 				F8766AE42CCBE9FF006F021D /* LaunchScreen.storyboard in Resources */,
-				F8766AE12CCBE9FF006F021D /* Assets.xcassets in Resources */,
 				F8766ADF2CCBE9FB006F021D /* Main.storyboard in Resources */,
+				F8FA507F2D1137BD00429162 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,12 +283,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8766AD82CCBE9FB006F021D /* AppDelegate.swift in Sources */,
-				F851DDAC2D062B000098CF19 /* CategorySelectionViewController.swift in Sources */,
 				F8766B082CCBEAF3006F021D /* TransactionViewController.swift in Sources */,
 				F809130C2CEA7C6F00D9A737 /* Transaction.swift in Sources */,
 				F8766B0C2CCBEBB4006F021D /* TransactionStore.swift in Sources */,
+				F80164B82D0FD4ED00C8D74D /* DateEntryViewController.swift in Sources */,
 				F8766ADA2CCBE9FB006F021D /* SceneDelegate.swift in Sources */,
-				F851DDAE2D06372B0098CF19 /* TransactionDetailsViewController.swift in Sources */,
+				F80164B62D0FD4CE00C8D74D /* AmountEntryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

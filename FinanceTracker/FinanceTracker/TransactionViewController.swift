@@ -7,79 +7,184 @@
 
 import UIKit
 
-class TransactionViewController: UITableViewController {
+class TransactionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TransactionEntryDelegate {
+    @IBOutlet weak var tableView: UITableView!
     
-    var transactionStore = TransactionStore()
-    
+    var transactions: [Transaction] = []
+    var transactionStore: TransactionStore?
+    var currentCategory: Category?
+    var currentAmount: Double?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        transactionStore.loadTransactions()
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let category = Category(rawValue: sectionTitle(for: section))!
-        return transactionStore.transactions(for: category).count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "TransactionCell")
+        loadTransactions()
         
-        let category = Category(rawValue: sectionTitle(for: indexPath.section))!
-        let transaction = transactionStore.transactions(for: category)[indexPath.row]
+        // Initialize and set images for buttons
+        setupButtons()
+    }
+
+    func setupButtons() {
+        let utilitiesButton = UIButton()
+        utilitiesButton.setImage(UIImage(named: "utilitiesIcon"), for: .normal)
+
+        let foodButton = UIButton()
+        foodButton.setImage(UIImage(named: "foodIcon"), for: .normal)
+
+        let transportationButton = UIButton()
+        transportationButton.setImage(UIImage(named: "transportationIcon"), for: .normal)
+
+        // Add buttons to the view or a stack view if needed
+        // Example: self.view.addSubview(utilitiesButton)
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Category.allCases.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let category = Category.allCases[section]
+        return transactions.filter { $0.category == category }.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath)
+        let category = Category.allCases[indexPath.section]
+        let transaction = transactions.filter { $0.category == category }[indexPath.row]
         
-        cell.textLabel?.text = "\(transaction.date): \(transaction.cost)"
+        let formattedAmount = formatAmount(transaction.cost)
+        let formattedDate = formatDate(transaction.date)
         
+        cell.textLabel?.text = "\(formattedAmount) - \(formattedDate)"
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitle(for: section)
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return Category.allCases[section].rawValue.capitalized
     }
-    
-    private func sectionTitle(for section: Int) -> String {
-        switch section {
-        case 0: return Category.food.rawValue
-        case 1: return Category.utilities.rawValue
-        case 2: return Category.transportation.rawValue
-        default: return ""
+
+    @IBAction func addTransaction(_ sender: UIButton) {
+        let category: Category
+        switch sender.tag {
+        case 0:
+            category = .food
+        case 1:
+            category = .utilities
+        case 2:
+            category = .transportation
+        default:
+            return
         }
+        currentCategory = category
+        presentAmountEntry(from: sender)
     }
-    
-    @IBAction func addNewTransaction(_ sender: UIButton) {
-        let categorySelectionVC = CategorySelectionViewController()
-        categorySelectionVC.transactionStore = transactionStore // Pass the transactionStore
-        categorySelectionVC.didSelectCategory = { [weak self] selectedCategory in
-            self?.presentTransactionDetails(for: selectedCategory)
-        }
-        let navController = UINavigationController(rootViewController: categorySelectionVC)
-        present(navController, animated: true, completion: nil)
-    }
-    
-    private func presentTransactionDetails(for category: Category) {
-        let alertController = UIAlertController(title: "New Transaction", message: "Enter transaction details", preferredStyle: .alert)
+
+    func presentAmountEntry(from sourceView: UIView) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let amountVC = storyboard.instantiateViewController(withIdentifier: "AmountEntryViewController") as! AmountEntryViewController
+        amountVC.delegate = self
+        amountVC.modalPresentationStyle = .popover
         
-        alertController.addTextField { textField in
-            textField.placeholder = "Cost"
-            textField.keyboardType = .decimalPad
+        if let popoverController = amountVC.popoverPresentationController {
+            popoverController.sourceView = sourceView
+            popoverController.sourceRect = sourceView.bounds
+            popoverController.permittedArrowDirections = .any
         }
         
-        let addAction = UIAlertAction(title: "Add", style: .default) { [weak self] _ in
-            if let costText = alertController.textFields?.first?.text, let cost = Double(costText) {
-                let date = Date()
-                _ = self?.transactionStore.createTransaction(date: date, cost: cost, category: category)
-                self?.tableView.reloadData()
+        present(amountVC, animated: true, completion: nil)
+    }
+
+    func presentDateEntry(from sourceView: UIView) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let dateVC = storyboard.instantiateViewController(withIdentifier: "DateEntryViewController") as! DateEntryViewController
+        dateVC.delegate = self
+        dateVC.modalPresentationStyle = .popover
+        
+        if let popoverController = dateVC.popoverPresentationController {
+            popoverController.sourceView = sourceView
+            popoverController.sourceRect = sourceView.bounds
+            popoverController.permittedArrowDirections = .any
+        }
+        
+        // Dismiss the current view controller before presenting the new one
+        if let presentedVC = self.presentedViewController {
+            presentedVC.dismiss(animated: true) {
+                self.present(dateVC, animated: true, completion: nil)
+            }
+        } else {
+            present(dateVC, animated: true, completion: nil)
+        }
+    }
+
+    func didEnterAmount(_ amount: Double) {
+        currentAmount = amount
+        presentDateEntry(from: self.view)
+    }
+
+    func didEnterDate(_ date: Date) {
+        if let category = currentCategory, let amount = currentAmount {
+            let transaction = Transaction(date: date, cost: amount, category: category)
+            transactions.append(transaction)
+            saveTransactions()
+            tableView.reloadData()
+        }
+    }
+
+    func saveTransactions() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(transactions) {
+            UserDefaults.standard.set(encoded, forKey: "transactions")
+        }
+    }
+
+    func loadTransactions() {
+        if let savedTransactions = UserDefaults.standard.object(forKey: "transactions") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedTransactions = try? decoder.decode([Transaction].self, from: savedTransactions) {
+                transactions = loadedTransactions
             }
         }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addAction(addAction)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = Category.allCases[indexPath.section]
+        _ = transactions.filter { $0.category == category }[indexPath.row]
+        // Present modals or popovers to edit the transaction
+    }
+
+    func displayTotal() {
+        _ = transactions.reduce(0) { $0 + $1.cost }
+        // Update UI with the total
+    }
+
+    // Helper methods to format amount and date
+    func formatAmount(_ amount: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = "$"
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        return formatter.string(from: NSNumber(value: amount)) ?? "$0.00"
+    }
+
+    func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
+    }
+
+    // Set row height
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60 // Adjust the height as needed
     }
 }
+
+// Define the TransactionEntryDelegate protocol
+protocol TransactionEntryDelegate: AnyObject {
+    func didEnterAmount(_ amount: Double)
+    func didEnterDate(_ date: Date)
+}
+
