@@ -8,13 +8,13 @@
   },
   "stickers" : [
     {
-      "filename" : "transportation.sticker"
+      "filename" : "transportationIcon.sticker"
     },
     {
-      "filename" : "utilities.sticker"
+      "filename" : "utilitiesIcon.sticker"
     },
     {
-      "filename" : "food.sticker"
+      "filename" : "foodIcon.sticker"
     }
   ]
 }
